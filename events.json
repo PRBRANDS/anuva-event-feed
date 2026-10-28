@@ -16,7 +16,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-spark-art-market-2026-11-01",
@@ -31,7 +36,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-nga-nights-gratitude-2026",
@@ -43,10 +53,16 @@
       "price": "Free · lottery registration required",
       "description": "An after-hours art evening with music, live performances, artmaking, and pop-up talks. The lottery opens the Monday before the event and closes Thursday at noon; limited same-day passes may be available at 5:30 PM.",
       "url": "https://www.nga.gov/calendar/national-gallery-nights",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/National_Gallery_of_Art%2C_East_Building.jpg?width=1200",
       "status": "verified",
       "sourceName": "National Gallery of Art",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:National_Gallery_of_Art,_East_Building.jpg",
+      "imageCredit": "National Gallery of Art, via Wikimedia Commons",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageType": "venue",
+      "imageVerified": true,
+      "imageAlt": "National Gallery of Art East Building"
     },
     {
       "id": "anuva-downtowndc-holiday-market-2026",
@@ -62,7 +78,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-frosted-franklin-park-2026",
@@ -78,7 +99,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-citycenterdc-tree-lighting-2026",
@@ -93,7 +119,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "CityCenterDC",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-hirshhorn-sculpture-garden-opening-2026",
@@ -106,10 +137,16 @@
       "price": "Free",
       "description": "Celebrate the reopening of the redesigned Sculpture Garden with nearly 60 artworks, art-making activities, pop-up talks and a weekend of public programming. Check the official schedule for each day's activities.",
       "url": "https://hirshhorn.si.edu/event/opening-celebration-hirshhorn-sculpture-garden/",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Exterior_Views_of_Hirshhorn_Museum_and_Sculpture_Garden%2C_Smithsonian%2C_on_the_National_Mall_in_Washington%2C_DC_%28f9705993-c843-4c8b-8c44-57b80270422b%29.jpg?width=1200",
       "status": "verified",
       "sourceName": "Hirshhorn Museum and Sculpture Garden",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Exterior_Views_of_Hirshhorn_Museum_and_Sculpture_Garden,_Smithsonian,_on_the_National_Mall_in_Washington,_DC_(f9705993-c843-4c8b-8c44-57b80270422b).jpg",
+      "imageCredit": "National Park Service staff, via Wikimedia Commons",
+      "imageLicense": "Public domain",
+      "imageType": "venue",
+      "imageVerified": true,
+      "imageAlt": "Hirshhorn Museum exterior on the National Mall"
     },
     {
       "id": "anuva-asia-after-dark-diwali-2026",
@@ -124,7 +161,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "National Museum of Asian Art",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-pakeezah-film-2026",
@@ -139,7 +181,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "National Museum of Asian Art",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-veterans-day-observance-2026",
@@ -154,7 +201,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "Arlington National Cemetery",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-dupont-circle-holiday-market-2026",
@@ -170,7 +222,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "Dupont Circle BID",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-renwick-handwork-2026",
@@ -185,7 +242,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "Smithsonian Institution",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-zoolights-2026",
@@ -201,7 +263,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "Smithsonian's National Zoo",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     },
     {
       "id": "anuva-adorned-in-gold-2026",
@@ -217,7 +284,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "National Museum of Asian Art",
-      "verifiedAt": "2026-10-27"
+      "verifiedAt": "2026-10-27",
+      "imageSource": "",
+      "imageCredit": "",
+      "imageLicense": "",
+      "imageType": "",
+      "imageVerified": false
     }
   ]
 }
