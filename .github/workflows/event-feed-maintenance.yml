@@ -1,0 +1,46 @@
+name: Anuva event-feed maintenance
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "events.json"
+      - "scripts/validate_events.py"
+      - ".github/workflows/event-feed-maintenance.yml"
+  schedule:
+    - cron: "17 13 * * *"
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: anuva-event-feed-maintenance
+  cancel-in-progress: false
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out feed repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Create dated backup
+        run: |
+          mkdir -p backups
+          cp events.json "backups/events-$(date -u +%F).json"
+          if ! git diff --quiet -- backups/; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add backups/
+            git commit -m "Daily event feed backup"
+            git push
+          fi
+      - name: Validate feed and check organizer links
+        run: python scripts/validate_events.py
+      - name: Upload maintenance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: anuva-event-feed-maintenance-report
+          path: maintenance-report.md
+          if-no-files-found: warn
