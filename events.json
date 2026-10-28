@@ -28,10 +28,15 @@
       "price": "Free",
       "description": "An outdoor art market with local makers, food vendors, poetry, music, and hands-on art activities. November's edition includes DJ sets and free interactive art projects.",
       "url": "https://www.arlingtonva.us/Government/Programs/Arts/Programs/SPARK-Market/SPARK1126",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Exterior_Views_of_Hirshhorn_Museum_and_Sculpture_Garden%2C_Smithsonian%2C_on_the_National_Mall_in_Washington%2C_DC_%28f9705993-c843-4c8b-8c44-57b80270422b%29.jpg?width=1200",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageVerified": true,
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Exterior_Views_of_Hirshhorn_Museum_and_Sculpture_Garden,_Smithsonian,_on_the_National_Mall_in_Washington,_DC_(f9705993-c843-4c8b-8c44-57b80270422b).jpg",
+      "imageCredit": "Photo: National Park Service / Wikimedia Commons",
+      "imageLicense": "Public domain (U.S. federal work)",
+      "imageAlt": "Exterior of the Hirshhorn Museum and Sculpture Garden on the National Mall"
     },
     {
       "id": "anuva-nga-nights-gratitude-2026",
@@ -43,10 +48,15 @@
       "price": "Free · lottery registration required",
       "description": "An after-hours art evening with music, live performances, artmaking, and pop-up talks. The lottery opens the Monday before the event and closes Thursday at noon; limited same-day passes may be available at 5:30 PM.",
       "url": "https://www.nga.gov/calendar/national-gallery-nights",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/East_Building_of_the_National_Gallery_of_Art.jpg?width=1200",
       "status": "verified",
       "sourceName": "National Gallery of Art",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageVerified": true,
+      "imageSource": "https://commons.wikimedia.org/wiki/File:East_Building_of_the_National_Gallery_of_Art.jpg",
+      "imageCredit": "Photo: Difference engine / Wikimedia Commons",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageAlt": "Exterior of the National Gallery of Art East Building in Washington, DC"
     },
     {
       "id": "anuva-downtowndc-holiday-market-2026",
