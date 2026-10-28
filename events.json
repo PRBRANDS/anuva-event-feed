@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-10-28",
   "feedStatus": "verified",
-  "automationNote": "Scheduled validation and expiry cleanup; event listings are not automatically verified from source websites.",
+  "automationNote": "Scheduled validation and expiry cleanup. Existing verified image and attribution fields must be preserved by feed updates; listings are not automatically verified from source websites.",
   "events": [
     {
       "id": "anuva-dia-de-los-muertos-arlington-2026",
@@ -13,10 +13,15 @@
       "price": "Free · no registration required",
       "description": "An evening picnic with family-friendly activities, vendors, food trucks, games, folklórico and mariachi performances, poetry, and a community ofrenda. The museum galleries stay open late.",
       "url": "https://www.arlingtonva.us/Government/Programs/Arts/Events/D%C3%ADa-de-los-Muertos",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dia_de_los_Muertos.jpg?width=1200",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageVerified": true,
+      "imageSource": "https://commons.wikimedia.org/wiki/File:Dia_de_los_Muertos.jpg",
+      "imageCredit": "Photo: Latinballet / Wikimedia Commons",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageAlt": "A Día de los Muertos festival performance; illustrative image, not a photograph of the Arlington event"
     },
     {
       "id": "anuva-spark-art-market-2026-11-01",
@@ -95,10 +100,15 @@
       "price": "Free · no tickets required",
       "description": "A downtown holiday gathering with live entertainment, family-friendly activities, holiday treats, and the lighting of CityCenterDC's 78-foot tree. Rain date: November 15.",
       "url": "https://www.citycenterdc.com/press-news/2026/09/annual-tree-lighting-2025/",
-      "image": "",
+      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/CityCenterDC_Christmas_tree.jpg?width=1200",
       "status": "verified",
       "sourceName": "CityCenterDC",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageVerified": true,
+      "imageSource": "https://commons.wikimedia.org/wiki/File:CityCenterDC_Christmas_tree.jpg",
+      "imageCredit": "Photo: AgnosticPreachersKid / Wikimedia Commons",
+      "imageLicense": "CC BY-SA 4.0",
+      "imageAlt": "A Christmas tree at the CityCenterDC complex in Washington, DC; archival venue photo"
     }
   ]
 }
