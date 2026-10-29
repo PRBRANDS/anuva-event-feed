@@ -1,7 +1,7 @@
 {
-  "lastUpdated": "2026-10-28",
+  "lastUpdated": "2026-10-29",
   "feedStatus": "verified",
-  "automationNote": "Scheduled validation and expiry cleanup. Existing verified image and attribution fields must be preserved by feed updates; listings are not automatically verified from source websites.",
+  "automationNote": "Scheduled validation and expiry cleanup; event listings are not automatically verified from source websites.",
   "events": [
     {
       "id": "anuva-dia-de-los-muertos-arlington-2026",
@@ -13,15 +13,10 @@
       "price": "Free · no registration required",
       "description": "An evening picnic with family-friendly activities, vendors, food trucks, games, folklórico and mariachi performances, poetry, and a community ofrenda. The museum galleries stay open late.",
       "url": "https://www.arlingtonva.us/Government/Programs/Arts/Events/D%C3%ADa-de-los-Muertos",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/Dia_de_los_Muertos.jpg?width=1200",
+      "image": "",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25",
-      "imageVerified": true,
-      "imageSource": "https://commons.wikimedia.org/wiki/File:Dia_de_los_Muertos.jpg",
-      "imageCredit": "Photo: Latinballet / Wikimedia Commons",
-      "imageLicense": "CC BY-SA 4.0",
-      "imageAlt": "A Día de los Muertos festival performance; illustrative image, not a photograph of the Arlington event"
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-spark-art-market-2026-11-01",
@@ -48,15 +43,10 @@
       "price": "Free · lottery registration required",
       "description": "An after-hours art evening with music, live performances, artmaking, and pop-up talks. The lottery opens the Monday before the event and closes Thursday at noon; limited same-day passes may be available at 5:30 PM.",
       "url": "https://www.nga.gov/calendar/national-gallery-nights",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/East_Building_of_the_National_Gallery_of_Art.jpg?width=1200",
+      "image": "",
       "status": "verified",
       "sourceName": "National Gallery of Art",
-      "verifiedAt": "2026-10-25",
-      "imageVerified": true,
-      "imageSource": "https://commons.wikimedia.org/wiki/File:East_Building_of_the_National_Gallery_of_Art.jpg",
-      "imageCredit": "Photo: Difference engine / Wikimedia Commons",
-      "imageLicense": "CC BY-SA 4.0",
-      "imageAlt": "Exterior of the National Gallery of Art East Building in Washington, DC"
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-downtowndc-holiday-market-2026",
@@ -100,91 +90,10 @@
       "price": "Free · no tickets required",
       "description": "A downtown holiday gathering with live entertainment, family-friendly activities, holiday treats, and the lighting of CityCenterDC's 78-foot tree. Rain date: November 15.",
       "url": "https://www.citycenterdc.com/press-news/2026/09/annual-tree-lighting-2025/",
-      "image": "https://commons.wikimedia.org/wiki/Special:FilePath/CityCenterDC_Christmas_tree.jpg?width=1200",
+      "image": "",
       "status": "verified",
       "sourceName": "CityCenterDC",
-      "verifiedAt": "2026-10-25",
-      "imageVerified": true,
-      "imageSource": "https://commons.wikimedia.org/wiki/File:CityCenterDC_Christmas_tree.jpg",
-      "imageCredit": "Photo: AgnosticPreachersKid / Wikimedia Commons",
-      "imageLicense": "CC BY-SA 4.0",
-      "imageAlt": "A Christmas tree at the CityCenterDC complex in Washington, DC; archival venue photo"
-    },
-    {
-      "id": "anuva-asia-after-dark-diwali-2026",
-      "title": "Asia After Dark: Diwali Festival",
-      "date": "2026-11-06",
-      "time": "5:00–9:30 PM",
-      "location": "National Museum of Asian Art, Smithsonian, Washington, DC",
-      "category": "Culture & Music",
-      "price": "Free · advance registration recommended",
-      "description": "Celebrate Diwali with food, music, dance, crafts, gallery activities and performances across the museum. Some activities have limited capacity.",
-      "url": "https://asia.si.edu/whats-on/events/search/event%3A209770265/",
-      "image": "",
-      "status": "verified",
-      "sourceName": "National Museum of Asian Art · Smithsonian",
-      "verifiedAt": "2026-10-28"
-    },
-    {
-      "id": "anuva-adams-morgan-porchfest-2026",
-      "title": "Adams Morgan Fall PorchFest",
-      "date": "2026-11-07",
-      "time": "12:00–5:00 PM",
-      "location": "Adams Morgan neighborhood, 18th Street NW and surrounding blocks, Washington, DC",
-      "category": "Music & Community",
-      "price": "Free",
-      "description": "A neighborhood-wide music festival with 100+ bands and 25+ stages, plus local business specials and a pre-holiday vendor market.",
-      "url": "https://adamsmorgan.com/porchfest",
-      "image": "",
-      "status": "verified",
-      "sourceName": "Adams Morgan Partnership",
-      "verifiedAt": "2026-10-28"
-    },
-    {
-      "id": "anuva-handwork-open-house-renwick-2026",
-      "title": "Handwork: Contemporary Craft Open House",
-      "date": "2026-11-13",
-      "time": "11:00 AM–2:00 PM",
-      "location": "Renwick Gallery, Pennsylvania Avenue NW at 17th Street NW, Washington, DC",
-      "category": "Arts & Culture",
-      "price": "Free · registration encouraged",
-      "description": "Explore a new contemporary craft installation, meet artists and curatorial staff, and take part in craft activities and a gallery scavenger hunt.",
-      "url": "https://americanart.si.edu/events/handwork-contemporary-craft-open-house-november-13-2026",
-      "image": "",
-      "status": "verified",
-      "sourceName": "Smithsonian American Art Museum",
-      "verifiedAt": "2026-10-28"
-    },
-    {
-      "id": "anuva-rosslyn-cheer-holiday-market-2026",
-      "title": "Rosslyn Cheer Holiday Market",
-      "date": "2026-11-21",
-      "time": "10:00 AM–4:00 PM",
-      "location": "Central Place Plaza, 1800 N Lynn Street, Rosslyn, Arlington, VA",
-      "category": "Markets & Community",
-      "price": "Free",
-      "description": "Shop one-of-a-kind gifts, handmade goods and local vendor finds. Santa is scheduled to visit from 2:00–4:00 PM, with more free family activities planned.",
-      "url": "https://www.rosslynva.org/do/rosslyn-cheer-2026-holiday-market",
-      "image": "",
-      "status": "verified",
-      "sourceName": "Rosslyn BID",
-      "verifiedAt": "2026-10-28"
-    },
-    {
-      "id": "anuva-smithsonian-zoolights-2026",
-      "title": "ZooLights at the Smithsonian’s National Zoo",
-      "date": "2026-11-20",
-      "endDate": "2027-01-03",
-      "time": "Select evenings · generally 5:00–9:00 PM (Sunday until 8:00 PM)",
-      "location": "Smithsonian’s National Zoo, 3001 Connecticut Avenue NW, Washington, DC",
-      "category": "Outdoors & Seasonal",
-      "price": "From $10 · tickets required",
-      "description": "Walk illuminated pathways, see more than 100 animal lanterns, enjoy seasonal music and explore the Zoo after dark. Runs on select dates, so check the official calendar before planning your visit.",
-      "url": "https://www.nationalzoo.si.edu/visit/events/zoolights",
-      "image": "",
-      "status": "verified",
-      "sourceName": "Smithsonian’s National Zoo",
-      "verifiedAt": "2026-10-28"
+      "verifiedAt": "2026-10-25"
     }
   ]
 }
