@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-29",
+  "lastUpdated": "2026-10-30",
   "feedStatus": "verified",
   "automationNote": "Scheduled validation and expiry cleanup; event listings are not automatically verified from source websites.",
   "events": [
@@ -16,12 +16,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25",
-      "imageSourceUrl": "",
-      "imageCredit": "",
-      "imageType": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-spark-art-market-2026-11-01",
@@ -36,12 +31,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25",
-      "imageSourceUrl": "",
-      "imageCredit": "",
-      "imageType": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-nga-nights-gratitude-2026",
@@ -56,12 +46,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "National Gallery of Art",
-      "verifiedAt": "2026-10-25",
-      "imageSourceUrl": "",
-      "imageCredit": "",
-      "imageType": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-downtowndc-holiday-market-2026",
@@ -77,12 +62,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25",
-      "imageSourceUrl": "",
-      "imageCredit": "",
-      "imageType": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-frosted-franklin-park-2026",
@@ -98,12 +78,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25",
-      "imageSourceUrl": "",
-      "imageCredit": "",
-      "imageType": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-citycenterdc-tree-lighting-2026",
@@ -118,12 +93,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "CityCenterDC",
-      "verifiedAt": "2026-10-25",
-      "imageSourceUrl": "",
-      "imageCredit": "",
-      "imageType": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     }
   ]
 }
