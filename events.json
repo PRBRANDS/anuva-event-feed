@@ -1,54 +1,8 @@
 {
-  "lastUpdated": "2026-11-01",
+  "lastUpdated": "2026-11-02",
   "feedStatus": "verified",
   "automationNote": "Scheduled validation and expiry cleanup; event listings are not automatically verified from source websites.",
   "events": [
-    {
-      "id": "anuva-dia-de-los-muertos-arlington-2026",
-      "title": "Día de los Muertos Celebration",
-      "date": "2026-11-01",
-      "time": "5:00–8:00 PM",
-      "location": "Museum of Contemporary Art Arlington, 3550 Wilson Blvd, Arlington, VA 22201",
-      "category": "Culture & Music",
-      "price": "Free · no registration required",
-      "description": "An evening picnic with family-friendly activities, vendors, food trucks, games, folklórico and mariachi performances, poetry, and a community ofrenda. The museum galleries stay open late.",
-      "url": "https://www.arlingtonva.us/Government/Programs/Arts/Events/D%C3%ADa-de-los-Muertos",
-      "image": "",
-      "status": "verified",
-      "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25",
-      "imageSource": "",
-      "imageLicense": "",
-      "imageAttribution": "",
-      "imagePermission": "pending",
-      "imageVerified": false,
-      "imageCandidate": "https://www.arlingtonva.us/files/sharedassets/public/v/1/arts/images/dia-de-los-muertos.png?w=1200",
-      "imageCandidateSource": "https://www.arlingtonva.us/Government/Programs/Arts/Events/D%C3%ADa-de-los-Muertos",
-      "imageCandidateStatus": "pending_rights_review"
-    },
-    {
-      "id": "anuva-spark-art-market-2026-11-01",
-      "title": "SPARK! Not Your Usual Art Market",
-      "date": "2026-11-01",
-      "time": "10:00 AM–2:00 PM",
-      "location": "2700 Art Space, 2700 S. Nelson Street, Arlington, VA 22206",
-      "category": "Arts & Markets",
-      "price": "Free",
-      "description": "An outdoor art market with local makers, food vendors, poetry, music, and hands-on art activities. November's edition includes DJ sets and free interactive art projects.",
-      "url": "https://www.arlingtonva.us/Government/Programs/Arts/Programs/SPARK-Market/SPARK1126",
-      "image": "",
-      "status": "verified",
-      "sourceName": "Arlington Arts",
-      "verifiedAt": "2026-10-25",
-      "imageSource": "",
-      "imageLicense": "",
-      "imageAttribution": "",
-      "imagePermission": "pending",
-      "imageVerified": false,
-      "imageCandidate": "https://www.arlingtonva.us/files/sharedassets/public/v/1/arts/images/2700/spark/spark-web-copy.jpg?w=1200",
-      "imageCandidateSource": "https://www.arlingtonva.us/Government/Programs/Arts/Programs/SPARK-Market/SPARK1126",
-      "imageCandidateStatus": "pending_rights_review"
-    },
     {
       "id": "anuva-nga-nights-gratitude-2026",
       "title": "National Gallery Nights: Gratitude",
@@ -62,12 +16,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "National Gallery of Art",
-      "verifiedAt": "2026-10-25",
-      "imageSource": "",
-      "imageLicense": "",
-      "imageAttribution": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-downtowndc-holiday-market-2026",
@@ -83,12 +32,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25",
-      "imageSource": "",
-      "imageLicense": "",
-      "imageAttribution": "",
-      "imagePermission": "pending",
-      "imageVerified": false
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-frosted-franklin-park-2026",
@@ -104,15 +48,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25",
-      "imageSource": "",
-      "imageLicense": "",
-      "imageAttribution": "",
-      "imagePermission": "pending",
-      "imageVerified": false,
-      "imageCandidate": "https://www.downtowndc.org/wp-content/uploads/2026/09/2025-12-DowntownDCBID-HolidayMarketFrosted-KF-Storybox-0433-1.jpg",
-      "imageCandidateSource": "https://www.downtowndc.org/events/frosted-at-franklin-park-2026/",
-      "imageCandidateStatus": "pending_rights_review"
+      "verifiedAt": "2026-10-25"
     },
     {
       "id": "anuva-citycenterdc-tree-lighting-2026",
@@ -127,15 +63,7 @@
       "image": "",
       "status": "verified",
       "sourceName": "CityCenterDC",
-      "verifiedAt": "2026-10-25",
-      "imageSource": "",
-      "imageLicense": "",
-      "imageAttribution": "",
-      "imagePermission": "pending",
-      "imageVerified": false,
-      "imageCandidate": "https://www.citycenterdc.com/wp-content/uploads/2025/10/TREE_LIGHTING_WEB_2-1920x1278.jpg",
-      "imageCandidateSource": "https://www.citycenterdc.com/press-news/2026/09/annual-tree-lighting-2025/",
-      "imageCandidateStatus": "pending_rights_review"
+      "verifiedAt": "2026-10-25"
     }
   ]
 }
