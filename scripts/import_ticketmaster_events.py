@@ -224,6 +224,13 @@ def main():
     print(f"Ticketmaster pages checked: {pages_read}")
     print(f"Existing Ticketmaster listings refreshed: {len(refreshed_ticketmaster)}")
     print(f"New unverified candidates added: {len(imported)}")
+    approved_images = sum(
+        1 for event in combined
+        if event.get("imageVerified") is True
+        and event.get("imagePermission") == "approved"
+        and str(event.get("image", "")).startswith("https://")
+    )
+    print(f"Total approved event images: {approved_images}")
     print(f"Total feed listings: {len(combined)}")
 
 
