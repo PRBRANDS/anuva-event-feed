@@ -219,6 +219,7 @@ def main():
     )
     FEED.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Ticketmaster pages checked: {pages_read}")
+    print(f"Existing Ticketmaster listings refreshed: {len(refreshed_ticketmaster)}")
     print(f"New unverified candidates added: {len(imported)}")
     print(f"Total feed listings: {len(combined)}")
 
