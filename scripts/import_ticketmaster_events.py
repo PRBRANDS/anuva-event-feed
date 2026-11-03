@@ -23,8 +23,7 @@ PAGE_SIZE = 200
 def fetch_page(api_key, page):
     params = {
         "apikey": api_key,
-        "city": "Washington",
-        "stateCode": "DC",
+        "latlong": "38.9072,-77.0369",
         "countryCode": "US",
         "radius": "50",
         "unit": "miles",
@@ -176,6 +175,7 @@ def main():
     combined.sort(key=lambda e: (e.get("date", "9999-12-31"), e.get("title", "").casefold()))
     data["events"] = combined
     data["lastUpdated"] = today.isoformat()
+    data["feedStatus"] = "mixed"
     data["automationNote"] = (
         "Ticketmaster Discovery API candidates are imported automatically and marked needs_review. "
         "Anuva must verify event details and image permissions before changing their status or displaying images. "
