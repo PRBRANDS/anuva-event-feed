@@ -2,6 +2,10 @@ name: Anuva Ticketmaster event import
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/import_ticketmaster_events.py'
   schedule:
     - cron: "17 14 * * *"
 
