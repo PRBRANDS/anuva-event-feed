@@ -164,7 +164,10 @@ def main():
     retained = []
     old_ticketmaster = {}
     for event in existing:
-        if event.get("sourceProvider") == "Ticketmaster":
+        if (
+            event.get("sourceProvider") in ("Ticketmaster", "Ticketmaster Discovery API")
+            or str(event.get("id", "")).startswith("ticketmaster-")
+        ):
             try:
                 if date.fromisoformat(event.get("endDate") or event["date"]) < today:
                     continue
