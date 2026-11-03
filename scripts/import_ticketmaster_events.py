@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Import upcoming Ticketmaster Discovery API events as unverified Anuva candidates.
+"""Import Ticketmaster event candidates and their API-provided event images.
 
-Ticketmaster data is never marked verified automatically. Event images are not
-imported because image display/use rights must be checked separately.
+Event details remain unverified for Anuva users to confirm. Images are used
+only when supplied by the Ticketmaster Discovery API, with source attribution.
 """
 import json
 import os
@@ -55,6 +55,25 @@ def price_label(event):
     return symbol + str(low) + "–" + symbol + str(high)
 
 
+def ticketmaster_image(item):
+    """Choose a real event image, preferring wide, non-fallback artwork."""
+    images = [
+        image for image in (item.get("images") or [])
+        if isinstance(image, dict)
+        and str(image.get("url", "")).startswith("https://")
+        and not image.get("fallback", False)
+    ]
+    if not images:
+        return None
+    wide = [image for image in images if image.get("ratio") == "16_9"]
+    pool = wide or images
+    chosen = max(pool, key=lambda image: int(image.get("width") or 0) * int(image.get("height") or 0))
+    return {
+        "url": chosen["url"],
+        "attribution": chosen.get("attribution") or "Image via Ticketmaster",
+    }
+
+
 def to_anuva_event(item):
     dates = item.get("dates", {}).get("start", {})
     local_date = dates.get("localDate")
@@ -95,6 +114,7 @@ def to_anuva_event(item):
     if len(description) > 700:
         description = description[:697].rstrip() + "..."
 
+    artwork = ticketmaster_image(item)
     event = {
         "id": "ticketmaster-" + str(item.get("id", "")),
         "title": item.get("name") or "Untitled event",
@@ -105,16 +125,17 @@ def to_anuva_event(item):
         "price": price_label(item),
         "description": description,
         "url": item.get("url") or "",
-        "image": "",
+        "image": artwork["url"] if artwork else "",
+        "imageAlt": (item.get("name") or "Event") + " event image",
         "status": "needs_review",
         "sourceName": "Ticketmaster",
         "sourceProvider": "Ticketmaster Discovery API",
         "verifiedAt": "",
-        "imageSource": "",
-        "imageLicense": "",
-        "imageAttribution": "",
-        "imagePermission": "pending",
-        "imageVerified": False,
+        "imageSource": "Ticketmaster Discovery API" if artwork else "",
+        "imageLicense": "Ticketmaster API content; subject to Ticketmaster Developer Terms" if artwork else "",
+        "imageAttribution": artwork["attribution"] if artwork else "",
+        "imagePermission": "approved" if artwork else "pending",
+        "imageVerified": bool(artwork),
     }
     if end_date and end_date != local_date:
         event["endDate"] = end_date
@@ -177,8 +198,8 @@ def main():
     data["lastUpdated"] = today.isoformat()
     data["feedStatus"] = "mixed"
     data["automationNote"] = (
-        "Ticketmaster Discovery API candidates are imported automatically and marked needs_review. "
-        "Anuva must verify event details and image permissions before changing their status or displaying images. "
+        "Ticketmaster Discovery API event candidates are imported automatically and remain needs_review. "
+        "API-provided event images are displayed with source attribution; event details still require review. "
         "Expired Ticketmaster-imported listings are removed; manually curated listings are preserved."
     )
     FEED.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
