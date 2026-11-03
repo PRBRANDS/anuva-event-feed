@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-11-03",
   "feedStatus": "mixed",
-  "automationNote": "Ticketmaster Discovery API candidates are imported automatically and marked needs_review. Anuva must verify event details and image permissions before changing their status or displaying images. Expired Ticketmaster-imported listings are removed; manually curated listings are preserved.",
+  "automationNote": "Ticketmaster Discovery API event candidates are imported automatically and remain needs_review. API-provided event images are displayed with source attribution; event details still require review. Expired Ticketmaster-imported listings are removed; manually curated listings are preserved.",
   "events": [
     {
       "id": "ticketmaster-17A8v0G62ZVqX1T",
