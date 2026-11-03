@@ -159,8 +159,10 @@ def main():
     data = json.loads(FEED.read_text(encoding="utf-8"))
     existing = data.get("events", [])
     today = date.today()
-    # Expire only records imported by this integration; preserve manually curated listings.
+    # Keep non-expired Ticketmaster records as a fallback, but refresh their
+    # fields (including artwork) whenever the API returns the same event ID.
     retained = []
+    old_ticketmaster = {}
     for event in existing:
         if event.get("sourceProvider") == "Ticketmaster":
             try:
@@ -168,10 +170,13 @@ def main():
                     continue
             except (KeyError, TypeError, ValueError):
                 continue
-        retained.append(event)
+            old_ticketmaster[event.get("id")] = event
+        else:
+            retained.append(event)
 
     existing_ids = {event.get("id") for event in retained}
     existing_keys = {identity(event) for event in retained}
+    refreshed_ticketmaster = {}
     imported = []
     pages_read = 0
     for page in range(MAX_PAGES):
@@ -182,17 +187,27 @@ def main():
             event = to_anuva_event(item)
             if not event:
                 continue
+            event_id = event["id"]
             key = identity(event)
-            if event["id"] in existing_ids or key in existing_keys:
+            if event_id in old_ticketmaster:
+                refreshed_ticketmaster[event_id] = event
+                continue
+            if event_id in existing_ids or key in existing_keys:
                 continue
             imported.append(event)
-            existing_ids.add(event["id"])
+            existing_ids.add(event_id)
             existing_keys.add(key)
         page_info = payload.get("page", {})
         if page + 1 >= page_info.get("totalPages", 1) or not items:
             break
 
-    combined = retained + imported
+    # Retain upcoming Ticketmaster listings outside the current API page window.
+    # Prefer refreshed API records for matching IDs so image data is not stale.
+    ticketmaster_records = [
+        refreshed_ticketmaster.get(event_id, old_event)
+        for event_id, old_event in old_ticketmaster.items()
+    ]
+    combined = retained + ticketmaster_records + imported
     combined.sort(key=lambda e: (e.get("date", "9999-12-31"), e.get("title", "").casefold()))
     data["events"] = combined
     data["lastUpdated"] = today.isoformat()
