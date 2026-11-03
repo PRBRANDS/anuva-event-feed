@@ -1,0 +1,39 @@
+name: Anuva Ticketmaster event import
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 14 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: anuva-ticketmaster-import
+  cancel-in-progress: false
+
+jobs:
+  import-events:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Anuva event feed
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Import Ticketmaster candidates
+        env:
+          TICKETMASTER_API_KEY: ${{ secrets.TICKETMASTER_API_KEY }}
+        run: python scripts/import_ticketmaster_events.py
+      - name: Commit feed updates
+        run: |
+          if ! git diff --quiet -- events.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add events.json
+            git commit -m "Import Ticketmaster event candidates"
+            git push
+          else
+            echo "No event-feed changes."
+          fi
