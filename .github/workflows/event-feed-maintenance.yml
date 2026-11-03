@@ -12,7 +12,7 @@ permissions:
   contents: write
   actions: read
 concurrency:
-  group: anuva-event-feed-maintenance
+  group: anuva-event-feed-writer
   cancel-in-progress: false
 jobs:
   maintain:
