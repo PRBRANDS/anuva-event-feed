@@ -38,7 +38,13 @@ def fetch_page(api_key, page):
     with urllib.request.urlopen(req, timeout=30) as response:
         return json.loads(response.read().decode("utf-8"))
 
-
+def is_likely_free(event):
+    """Detect free or very low-cost events."""
+    price = str(event.get("price") or "").lower()
+    title = str(event.get("title") or "").lower()
+    desc = str(event.get("description") or "").lower()
+    free_words = ["free", "no charge", "complimentary", "open to the public", "donation optional"]
+    return any(w in price or w in title or w in desc for w in free_words)
 def price_label(event):
     ranges = event.get("priceRanges") or []
     if not ranges:
@@ -161,6 +167,15 @@ def to_anuva_event(item):
     elif any(x in loc_lower for x in ["arlington", "alexandria", "silver spring", "bethesda", "takoma"]):
         event["priority"] += 2
 
+        # Free + DC priority
+    event["isFree"] = is_likely_free(event)
+    event["priority"] = 10 if event["isFree"] else 0
+    loc_lower = location.lower()
+    if any(x in loc_lower for x in ["washington", " dc", "district of columbia"]):
+        event["priority"] += 4
+    elif any(x in loc_lower for x in ["arlington", "alexandria", "silver spring", "bethesda"]):
+        event["priority"] += 2
+
     return event if event["url"].startswith("https://") else None
 
 
@@ -233,11 +248,7 @@ def main():
     combined = retained + ticketmaster_records + imported
 
     # Free + DC first, then by date
-    combined.sort(key=lambda e: (
-        -e.get("priority", 0),
-        e.get("date", "9999-12-31"),
-        e.get("title", "").casefold()
-    ))
+    combined.sort(key=lambda e: (-e.get("priority", 0), e.get("date", "9999-12-31"), e.get("title", "").casefold()))
 
     data["events"] = combined
     data["lastUpdated"] = today.isoformat()
