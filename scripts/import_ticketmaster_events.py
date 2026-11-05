@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Import Ticketmaster event candidates and their API-provided event images.
 
-Event details remain unverified for Anuva users to confirm. Images are used
+Prioritizes free / low-cost events and DC-area listings for Anuva.
+Event details remain unverified for users to confirm. Images are used
 only when supplied by the Ticketmaster Discovery API, with source attribution.
 """
 import json
@@ -25,7 +26,7 @@ def fetch_page(api_key, page):
         "apikey": api_key,
         "latlong": "38.9072,-77.0369",
         "countryCode": "US",
-        "radius": "50",
+        "radius": "40",          # tighter DC + nearby focus
         "unit": "miles",
         "startDateTime": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "sort": "date,asc",
@@ -55,8 +56,19 @@ def price_label(event):
     return symbol + str(low) + "–" + symbol + str(high)
 
 
+def is_likely_free(event):
+    """Detect free or very low-cost events from price, title and description."""
+    price = str(event.get("price") or "").lower()
+    title = str(event.get("title") or "").lower()
+    desc = str(event.get("description") or "").lower()
+    free_words = [
+        "free", "no charge", "complimentary", "open to the public",
+        "donation optional", "pay what you can", "suggested donation"
+    ]
+    return any(w in price or w in title or w in desc for w in free_words)
+
+
 def ticketmaster_image(item):
-    """Choose a real event image, preferring wide, non-fallback artwork."""
     images = [
         image for image in (item.get("images") or [])
         if isinstance(image, dict)
@@ -139,6 +151,16 @@ def to_anuva_event(item):
     }
     if end_date and end_date != local_date:
         event["endDate"] = end_date
+
+    # Free + DC priority
+    event["isFree"] = is_likely_free(event)
+    event["priority"] = 10 if event["isFree"] else 0
+    loc_lower = location.lower()
+    if any(x in loc_lower for x in ["washington", " dc", "district of columbia"]):
+        event["priority"] += 4
+    elif any(x in loc_lower for x in ["arlington", "alexandria", "silver spring", "bethesda", "takoma"]):
+        event["priority"] += 2
+
     return event if event["url"].startswith("https://") else None
 
 
@@ -159,8 +181,7 @@ def main():
     data = json.loads(FEED.read_text(encoding="utf-8"))
     existing = data.get("events", [])
     today = date.today()
-    # Keep non-expired Ticketmaster records as a fallback, but refresh their
-    # fields (including artwork) whenever the API returns the same event ID.
+
     retained = []
     old_ticketmaster = {}
     for event in existing:
@@ -182,6 +203,7 @@ def main():
     refreshed_ticketmaster = {}
     imported = []
     pages_read = 0
+
     for page in range(MAX_PAGES):
         payload = fetch_page(api_key, page)
         pages_read += 1
@@ -204,33 +226,34 @@ def main():
         if page + 1 >= page_info.get("totalPages", 1) or not items:
             break
 
-    # Retain upcoming Ticketmaster listings outside the current API page window.
-    # Prefer refreshed API records for matching IDs so image data is not stale.
     ticketmaster_records = [
         refreshed_ticketmaster.get(event_id, old_event)
         for event_id, old_event in old_ticketmaster.items()
     ]
     combined = retained + ticketmaster_records + imported
-    combined.sort(key=lambda e: (e.get("date", "9999-12-31"), e.get("title", "").casefold()))
+
+    # Free + DC first, then by date
+    combined.sort(key=lambda e: (
+        -e.get("priority", 0),
+        e.get("date", "9999-12-31"),
+        e.get("title", "").casefold()
+    ))
+
     data["events"] = combined
     data["lastUpdated"] = today.isoformat()
     data["feedStatus"] = "mixed"
     data["automationNote"] = (
         "Ticketmaster Discovery API event candidates are imported automatically and remain needs_review. "
-        "API-provided event images are displayed with source attribution; event details still require review. "
+        "Free and DC-area events are prioritized. API-provided event images are displayed with source attribution. "
         "Expired Ticketmaster-imported listings are removed; manually curated listings are preserved."
     )
     FEED.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    free_count = sum(1 for e in combined if e.get("isFree"))
     print(f"Ticketmaster pages checked: {pages_read}")
     print(f"Existing Ticketmaster listings refreshed: {len(refreshed_ticketmaster)}")
     print(f"New unverified candidates added: {len(imported)}")
-    approved_images = sum(
-        1 for event in combined
-        if event.get("imageVerified") is True
-        and event.get("imagePermission") == "approved"
-        and str(event.get("image", "")).startswith("https://")
-    )
-    print(f"Total approved event images: {approved_images}")
+    print(f"Free / low-cost events detected: {free_count}")
     print(f"Total feed listings: {len(combined)}")
 
 
