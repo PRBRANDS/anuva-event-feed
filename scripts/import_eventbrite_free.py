@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Import free and low-cost Eventbrite events around Washington DC for Anuva."""
+"""Import free and low-cost Eventbrite events around Washington DC for Anuva.
+Improved version with better error reporting.
+"""
 
 import json
 import os
@@ -14,7 +16,6 @@ FEED = ROOT / "events.json"
 USER_AGENT = "AnuvaEventFeed/1.0"
 ENDPOINT = "https://www.eventbriteapi.com/v3/events/search/"
 
-# DC center + radius
 LAT = "38.9072"
 LON = "-77.0369"
 RADIUS = "40mi"
@@ -25,10 +26,9 @@ def fetch_events(api_key, page=1):
         "location.latitude": LAT,
         "location.longitude": LON,
         "location.within": RADIUS,
-        "price": "free",
         "start_date.range_start": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "sort_by": "date",
-        "expand": "venue,category,format",
+        "expand": "venue,category",
         "page": page,
     }
     url = ENDPOINT + "?" + urllib.parse.urlencode(params)
@@ -39,8 +39,19 @@ def fetch_events(api_key, page=1):
             "User-Agent": USER_AGENT,
         },
     )
-    with urllib.request.urlopen(req, timeout=30) as response:
-        return json.loads(response.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(req, timeout=30) as response:
+            data = json.loads(response.read().decode("utf-8"))
+            print(f"Page {page} status: OK")
+            print(f"Events returned on this page: {len(data.get('events') or [])}")
+            return data
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", errors="replace")
+        print(f"HTTP Error {e.code}: {body[:500]}")
+        raise
+    except Exception as e:
+        print(f"Error: {type(e).__name__}: {e}")
+        raise
 
 
 def to_anuva_event(item):
@@ -53,6 +64,11 @@ def to_anuva_event(item):
         if date.fromisoformat(local_date) < date.today():
             return None
     except ValueError:
+        return None
+
+    # Only keep free or very low cost
+    is_free = item.get("is_free", False)
+    if not is_free:
         return None
 
     venue = item.get("venue") or {}
@@ -96,10 +112,9 @@ def to_anuva_event(item):
         "imagePermission": "pending",
         "imageVerified": False,
         "isFree": True,
-        "priority": 15,  # higher than Ticketmaster free
+        "priority": 15,
     }
 
-    # Boost pure DC events a bit more
     loc_lower = location.lower()
     if any(x in loc_lower for x in ["washington", " dc", "district of columbia"]):
         event["priority"] += 3
@@ -121,11 +136,11 @@ def main():
         print("ERROR: EVENTBRITE_API_KEY is not configured.")
         sys.exit(1)
 
+    print("Starting Eventbrite free events import...")
     data = json.loads(FEED.read_text(encoding="utf-8"))
     existing = data.get("events", [])
     today = date.today()
 
-    # Keep non-Eventbrite events and non-expired Eventbrite ones
     retained = []
     old_eventbrite = {}
     for event in existing:
@@ -144,11 +159,10 @@ def main():
     imported = []
     pages_read = 0
 
-    for page in range(1, 6):  # up to 5 pages
+    for page in range(1, 4):
         try:
             payload = fetch_events(api_key, page)
-        except Exception as exc:
-            print(f"Error fetching page {page}: {exc}")
+        except Exception:
             break
         pages_read += 1
         items = payload.get("events") or []
@@ -168,7 +182,6 @@ def main():
         if not pagination.get("has_more_items"):
             break
 
-    # Keep old Eventbrite events that are still upcoming
     combined = retained + list(old_eventbrite.values()) + imported
     combined.sort(key=lambda e: (-e.get("priority", 0), e.get("date", "9999-12-31"), e.get("title", "").casefold()))
 
