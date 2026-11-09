@@ -1,7 +1,7 @@
 {
   "lastUpdated": "2026-11-09",
   "feedStatus": "mixed",
-  "automationNote": "Ticketmaster Discovery API event candidates are imported automatically and remain needs_review. Free and DC-area events are prioritized. API-provided event images are displayed with source attribution. Expired Ticketmaster-imported listings are removed; manually curated listings are preserved.",
+  "automationNote": "Free Eventbrite events are imported automatically and prioritized. Ticketmaster candidates remain needs_review. Expired listings are removed; manually curated listings are preserved.",
   "events": [
     {
       "id": "ticketmaster-rZ7HnEZ1AfagF7",
