@@ -39,12 +39,42 @@ def fetch_page(api_key, page):
         return json.loads(response.read().decode("utf-8"))
 
 def is_likely_free(event):
-    """Detect free or very low-cost events."""
-    price = str(event.get("price") or "").lower()
+    """Strict detection of genuinely free events."""
+    price = str(event.get("price") or "").lower().strip()
     title = str(event.get("title") or "").lower()
     desc = str(event.get("description") or "").lower()
-    free_words = ["free", "no charge", "complimentary", "open to the public", "donation optional"]
-    return any(w in price or w in title or w in desc for w in free_words)
+
+    # Clear free signals only
+    if price in ("free", "free admission", "free entry", "free event"):
+        return True
+    if price.startswith("free ") or price.startswith("free,"):
+        return True
+
+    free_phrases = [
+        "free admission", "free entry", "free and open to the public",
+        "no charge", "no cost", "complimentary admission",
+        "donation optional", "pay what you can", "suggested donation"
+    ]
+    if any(p in price or p in title or p in desc for p in free_phrases):
+        return True
+
+    # Strong rejection of common false positives
+    reject = [
+        "vip", "upsell", "package", "meet & greet", "meet and greet",
+        "early entry", "laminate", "merch", "ticket required",
+        "general admission", "ga ticket", "separate admission",
+        "free throw", "free parking", "free wifi", "free drink"
+    ]
+    if any(r in title or r in desc for r in reject):
+        return False
+
+    # Reject anything that looks like a price range or paid amount
+    if any(c in price for c in ["$", "–", "-", "to", "from"]) and "free" not in price:
+        return False
+    if price in ("$0.0", "$0.00", "0.0", "0.00", "check organizer for price"):
+        return False
+
+    return False
 def price_label(event):
     ranges = event.get("priceRanges") or []
     if not ranges:
