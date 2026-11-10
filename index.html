@@ -36,14 +36,13 @@ body::before {
   inset: 0;
   z-index: -2;
   background-image:
-    url("https://images.unsplash.com/photo-1617589082290-8a1b0a0a0a0a?auto=format&fit=crop&w=1920&q=60"),
-    url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1920&q=60"),
-    url("https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1920&q=60"),
-    url("https://images.unsplash.com/photo-1569949381669-ecf31ae8e75c?auto=format&fit=crop&w=1920&q=60");
+    url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1920&q=70"),
+    url("https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1920&q=70"),
+    url("https://images.unsplash.com/photo-1569949381669-ecf31ae8e75c?auto=format&fit=crop&w=1920&q=70");
   background-size: cover;
   background-position: center;
-  opacity: 0.09;
-  animation: bgShift 28s ease-in-out infinite alternate;
+  opacity: 0.14;
+  animation: bgShift 32s ease-in-out infinite alternate;
 }
 body::after {
   content: "";
@@ -71,8 +70,15 @@ button, input { font: inherit; border: none; background: none; }
 .btn { display: inline-flex; align-items: center; padding: 9px 16px; border-radius: 999px; background: var(--green); color: white; font-weight: 600; font-size: 13px; transition: 0.2s; }
 .btn:hover { background: var(--ink); transform: translateY(-1px); }
 .btn.light { background: transparent; border: 1px solid rgba(255,255,255,0.5); color: white; }
-
-.hero { padding: 70px 0 50px; background: linear-gradient(160deg, rgba(26,60,50,0.94) 0%, rgba(42,92,74,0.92) 100%); color: white; position: relative; overflow: hidden; }
+.hero {
+  padding: 70px 0 50px;
+  background:
+    linear-gradient(160deg, rgba(26,60,50,0.88) 0%, rgba(42,92,74,0.82) 100%),
+    url("https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1600&q=75") center/cover;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
 .hero .eyebrow { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #c5e0d4; margin-bottom: 12px; }
 .hero h1 { font: 500 clamp(2.4rem, 6vw, 3.8rem)/1.1 "Fraunces", Georgia, serif; letter-spacing: -0.03em; max-width: 640px; margin-bottom: 14px; }
 .hero h1 em { font-style: italic; color: #f0c9a8; }
