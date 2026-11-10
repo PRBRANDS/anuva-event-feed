@@ -412,13 +412,21 @@ button, input { font: inherit; }
   document.querySelector('#eventNext').addEventListener('click', () => scrollRails(1));
   search.addEventListener('input', render);
 
-  fetch('https://raw.githubusercontent.com/PRBRANDS/anuva-event-feed/main/events.json', { cache: 'no-store' })
-    .then(r => { if (!r.ok) throw Error('unavailable'); return r.json(); })
-    .then(d => { events = Array.isArray(d.events) ? d.events : []; render(); })
-    .catch(() => {
-      count.textContent = 'Feed unavailable · try the official calendars below';
-      decks.innerHTML = '<div class="empty">Could not load events right now. Explore the trusted calendars below.</div>';
-    });
+ Promise.all([
+  fetch('https://raw.githubusercontent.com/PRBRANDS/anuva-event-feed/main/free-events.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : { events: [] }).catch(() => ({ events: [] })),
+  fetch('https://raw.githubusercontent.com/PRBRANDS/anuva-event-feed/main/events.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : { events: [] }).catch(() => ({ events: [] }))
+]).then(([freeData, mainData]) => {
+  const freeEvents = Array.isArray(freeData.events) ? freeData.events : [];
+  const mainEvents = Array.isArray(mainData.events) ? mainData.events : [];
+  // Free events first, then the rest (avoid duplicates by id)
+  const seen = new Set(freeEvents.map(e => e.id));
+  const combined = freeEvents.concat(mainEvents.filter(e => !seen.has(e.id)));
+  events = combined;
+  render();
+}).catch(() => {
+  count.textContent = 'Feed unavailable · try the official calendars below';
+  decks.innerHTML = '<div class="empty">Could not load events right now. Explore the trusted calendars below.</div>';
+});
 })();
 </script>
 </body>
