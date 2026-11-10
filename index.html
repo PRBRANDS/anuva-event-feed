@@ -349,7 +349,11 @@ button, input { font: inherit; }
       if (['cancelled','expired'].includes(status) || (end && end < today)) return false;
       if (q && !([e.title, e.location, e.category, e.description, e.price, e.time].join(' ').toLowerCase().includes(q))) return false;
       if (filter === 'saved' && !kept.includes(e.id)) return false;
-      if (filter === 'free' && !(e.isFree === true || /^(free|\$0|0\.00)/i.test(String(e.price || '').trim()) || /\bfree\b/i.test(e.title || '') || /\bfree\b/i.test(e.description || ''))) return false;
+      if (filter === 'free' && !(
+  (e.isFree === true && e.sourceProvider === 'Manual curation') ||
+  (e.isFree === true && String(e.price || '').toLowerCase().trim() === 'free') ||
+  /^(free|free admission|free entry)$/i.test(String(e.price || '').trim())
+)) return false;
       if (filter === 'coming') {
         const limit = new Date(today); limit.setDate(limit.getDate() + 30);
         if (!d || d < today || d > limit) return false;
