@@ -17,7 +17,12 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageLicense": "",
+      "imageAttribution": "",
+      "imagePermission": "pending",
+      "imageVerified": false
     },
     {
       "id": "anuva-frosted-franklin-park-2026",
@@ -33,7 +38,15 @@
       "image": "",
       "status": "verified",
       "sourceName": "DowntownDC BID",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageLicense": "",
+      "imageAttribution": "",
+      "imagePermission": "pending",
+      "imageVerified": false,
+      "imageCandidate": "https://www.downtowndc.org/wp-content/uploads/2026/09/2025-12-DowntownDCBID-HolidayMarketFrosted-KF-Storybox-0433-1.jpg",
+      "imageCandidateSource": "https://www.downtowndc.org/events/frosted-at-franklin-park-2026/",
+      "imageCandidateStatus": "pending_rights_review"
     },
     {
       "id": "anuva-citycenterdc-tree-lighting-2026",
@@ -48,7 +61,15 @@
       "image": "",
       "status": "verified",
       "sourceName": "CityCenterDC",
-      "verifiedAt": "2026-10-25"
+      "verifiedAt": "2026-10-25",
+      "imageSource": "",
+      "imageLicense": "",
+      "imageAttribution": "",
+      "imagePermission": "pending",
+      "imageVerified": false,
+      "imageCandidate": "https://www.citycenterdc.com/wp-content/uploads/2025/10/TREE_LIGHTING_WEB_2-1920x1278.jpg",
+      "imageCandidateSource": "https://www.citycenterdc.com/press-news/2026/09/annual-tree-lighting-2025/",
+      "imageCandidateStatus": "pending_rights_review"
     }
   ]
 }
