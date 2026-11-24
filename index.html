@@ -316,7 +316,7 @@ button, input { font: inherit; border: none; background: none; }
     return `<article class="event">
       <div class="eventart" style="--art-a:${p[0]};--art-b:${p[1]}">
         ${img ? `<img loading="lazy" src="${esc(img)}" alt="" onerror="this.remove()">` : ''}
-        <div class="date">${d ? d.toLocaleDateString('en-US',{month:'short'}).toUpperCase() : 'DC'}<b>${d ? d.toLocaleDateString('en-US',{day:'2-digit'}) : '—'}</b></div>
+        <div class="date">${e.eventType === 'evergreen' ? 'ANY' : e.eventType === 'ongoing' ? 'NOW' : (d ? d.toLocaleDateString('en-US',{month:'short'}).toUpperCase() : 'DC')}<b>${e.eventType === 'evergreen' ? 'TIME' : e.eventType === 'ongoing' ? 'ON' : (d ? d.toLocaleDateString('en-US',{day:'2-digit'}) : '—')}</b></div>
         ${isFree ? '<div class="free-badge">Free</div>' : ''}
       </div>
       <div class="eventbody">
@@ -345,7 +345,12 @@ button, input { font: inherit; border: none; background: none; }
     const list = events.filter(e => {
       const d = dateOf(e.date);
       const end = dateOf(e.endDate || e.date);
-      if (end && end < today) return false;
+      const approved = ['verified','approved','published'].includes(String(e.status || '').toLowerCase());
+      if (!approved) return false;
+      if (e.eventType === 'evergreen') {
+        // Permanent public attractions are shown in their own section, not date-based sections.
+      } else if (!d) return false;
+      if (e.eventType !== 'evergreen' && end && end < today) return false;
       if (q && !([e.title, e.location, e.category, e.description].join(' ').toLowerCase().includes(q))) return false;
       if (filter === 'saved' && !kept.includes(e.id)) return false;
       if (filter === 'free' && !(
@@ -355,9 +360,12 @@ button, input { font: inherit; border: none; background: none; }
       )) return false;
       if (filter === 'coming') {
         const limit = new Date(today); limit.setDate(limit.getDate() + 30);
-        if (!d || d < today || d > limit) return false;
+        if (e.eventType === 'evergreen' || !d || d < today || d > limit) return false;
       }
-      if (filter === 'weekend' && (!d || d < today || d > sun)) return false;
+      if (filter === 'weekend') {
+        const finish = end || d;
+        if (e.eventType === 'evergreen' || !d || !finish || d > sun || finish < today) return false;
+      }
       if (!['all','saved','free','weekend','coming'].includes(filter) && cat(e.category) !== filter) return false;
       return true;
     });
@@ -370,16 +378,23 @@ button, input { font: inherit; border: none; background: none; }
 
     const groups = [
       { key: 'week', title: 'This Week', sub: 'Plans for the days ahead', test: d => d >= today && d < thisWeekEnd },
-      { key: 'weekend', title: 'This Weekend', sub: 'Reasons to get out', test: d => d >= sat && d < weekendEnd },
+      { key: 'weekend', title: 'This Weekend', sub: 'Reasons to get out', test: d => d <= sun },
       { key: 'next', title: 'Next Week', sub: 'Something to look forward to', test: d => d >= thisWeekEnd && d < nextEnd },
-      { key: 'soon', title: 'Coming Soon', sub: 'Save for later', test: d => d >= nextEnd }
+      { key: 'soon', title: 'Coming Soon', sub: 'Save for later', test: d => d >= nextEnd },
+      { key: 'ongoing', title: 'Happening Now', sub: 'Experiences already underway', test: () => false },
+      { key: 'evergreen', title: 'Always Available', sub: 'Free places and experiences to explore anytime', test: () => false }
     ];
 
     decks.innerHTML = groups.map(g => {
       const items = list.filter(e => {
         const d = dateOf(e.date);
         const end = dateOf(e.endDate || e.date);
-        return d && (g.test(d) || (g.key === 'week' && end && d < today && end >= today));
+        if (g.key === 'evergreen') return e.eventType === 'evergreen';
+        if (g.key === 'ongoing') return e.eventType === 'ongoing' && d && end && d <= today && end >= today;
+        if (e.eventType === 'evergreen') return false;
+        if (g.key === 'weekend') return d && end && d <= sun && end >= sat;
+        if (e.eventType === 'ongoing') return false;
+        return d && g.test(d);
       });
       return `<div class="deck-section">
         <div class="deck-heading">

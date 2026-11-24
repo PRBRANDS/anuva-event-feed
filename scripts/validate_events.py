@@ -5,6 +5,7 @@ from datetime import date
 from pathlib import Path
 
 FEED = Path("events.json")
+FREE_FEED = Path("free-events.json")
 REPORT = Path("maintenance-report.md")
 errors, warnings = [], []
 try:
@@ -52,6 +53,45 @@ for i, e in enumerate(events):
                     warnings.append(f"Link returned HTTP {response.status}: {url}")
         except Exception as exc:
             warnings.append(f"Could not confirm link (not proof it's broken): {url} — {exc}")
+
+# Validate the separately curated public free/evergreen collection too.
+try:
+    free_data = json.loads(FREE_FEED.read_text(encoding="utf-8"))
+    free_events = free_data.get("events", [])
+    free_seen_ids, free_seen_keys = set(), set()
+    for i, event in enumerate(free_events):
+        where = f"free-events.json events[{i}]"
+        if not isinstance(event, dict):
+            errors.append(f"{where} must be an object.")
+            continue
+        for key in ("id", "title", "location", "category", "price", "description", "url", "status", "sourceName"):
+            if not event.get(key):
+                errors.append(f"{where} missing required field: {key}")
+        if event.get("id") in free_seen_ids:
+            errors.append(f"Duplicate free-event id: {event.get('id')}")
+        free_seen_ids.add(event.get("id"))
+        event_type = event.get("eventType", "event")
+        if event_type not in ("event", "ongoing", "evergreen"):
+            errors.append(f"{where} has unsupported eventType: {event_type}")
+        if event_type != "evergreen":
+            try:
+                start = date.fromisoformat(event["date"])
+                end = date.fromisoformat(event.get("endDate") or event["date"])
+                if end < start:
+                    errors.append(f"{event.get('id')}: endDate is earlier than date.")
+                if end < today:
+                    warnings.append(f"Expired free listing: {event.get('title')}")
+            except (KeyError, TypeError, ValueError):
+                errors.append(f"{where} has invalid ISO date/endDate.")
+        key = (" ".join(str(event.get("title", "")).casefold().split()),
+               " ".join(str(event.get("location", "")).casefold().split()))
+        if key in free_seen_keys:
+            errors.append(f"Duplicate free-event title/location: {event.get('title')}")
+        free_seen_keys.add(key)
+        if not str(event.get("url", "")).startswith("https://"):
+            errors.append(f"{event.get('id')}: URL must start with https://")
+except Exception as exc:
+    errors.append(f"free-events.json could not be validated: {exc}")
 
 lines = [
     "# Anuva event-feed maintenance report",

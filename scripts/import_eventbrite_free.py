@@ -123,11 +123,13 @@ def to_anuva_event(item):
 
 
 def identity(event):
-    return (
-        str(event.get("title", "")).strip().casefold(),
-        str(event.get("date", "")),
-        str(event.get("location", "")).strip().casefold(),
-    )
+    def norm(value):
+        import re, unicodedata
+        value = unicodedata.normalize("NFKD", str(value or ""))
+        value = "".join(ch for ch in value if not unicodedata.combining(ch))
+        value = value.casefold().replace("&", " and ")
+        return " ".join(re.sub(r"[^a-z0-9]+", " ", value).split())
+    return (norm(event.get("title")), str(event.get("date", "")), norm(event.get("location")))
 
 
 def main():

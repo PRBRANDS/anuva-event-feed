@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-12",
+  "lastUpdated": "2026-11-24",
   "note": "Protected free events. Do not overwrite from automated imports.",
   "events": [
     {
@@ -21,7 +21,8 @@
       "imageVerified": true,
       "imagePermission": "approved",
       "isFree": true,
-      "priority": 22
+      "priority": 22,
+      "eventType": "ongoing"
     },
     {
       "id": "anuva-free-frosted",
@@ -40,32 +41,13 @@
       "sourceName": "DowntownDC",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 21
-    },
-    {
-      "id": "anuva-free-citycenter-tree",
-      "title": "CityCenterDC Annual Holiday Tree Lighting",
-      "date": "2026-11-14",
-      "endDate": "2026-11-14",
-      "time": "5:00–8:00 PM (tree lighting around 6 PM)",
-      "location": "The Park at CityCenter, New York Ave NW & 11th St NW, Washington, DC",
-      "category": "Community",
-      "price": "Free",
-      "description": "Free downtown holiday gathering with live entertainment, family activities, and the lighting of a large holiday tree.",
-      "url": "https://www.downtowndc.org/events/annual-holiday-tree-lighting-celebration-2026/",
-      "image": "",
-      "imageAlt": "CityCenterDC Tree Lighting",
-      "status": "verified",
-      "sourceName": "DowntownDC / CityCenterDC",
-      "sourceProvider": "Manual curation",
-      "isFree": true,
-      "priority": 21
+      "priority": 21,
+      "eventType": "ongoing"
     },
     {
       "id": "anuva-free-smithsonian",
       "title": "Smithsonian Museums – Free Admission",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See museum hours",
       "location": "National Mall & around Washington, DC",
       "category": "Arts & culture",
@@ -78,13 +60,13 @@
       "sourceName": "Smithsonian",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 20
+      "priority": 20,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-nga",
       "title": "National Gallery of Art – Free Entry",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See gallery hours",
       "location": "National Gallery of Art, Washington, DC",
       "category": "Arts & culture",
@@ -97,13 +79,13 @@
       "sourceName": "National Gallery of Art",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 20
+      "priority": 20,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-zoo",
       "title": "Smithsonian's National Zoo – Free Entry",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See zoo hours",
       "location": "Smithsonian's National Zoo, Washington, DC",
       "category": "Outdoors",
@@ -116,13 +98,13 @@
       "sourceName": "National Zoo",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 19
+      "priority": 19,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-mall",
       "title": "National Mall Walk & Memorials",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "Anytime",
       "location": "National Mall, Washington, DC",
       "category": "Outdoors",
@@ -135,13 +117,13 @@
       "sourceName": "National Park Service",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 18
+      "priority": 18,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-library",
       "title": "Library of Congress – Free Visit",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See visitor hours",
       "location": "Library of Congress, Washington, DC",
       "category": "Arts & culture",
@@ -154,13 +136,13 @@
       "sourceName": "Library of Congress",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 18
+      "priority": 18,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-eastern-market",
       "title": "Eastern Market – Weekend Market",
-      "date": "2026-11-09",
-      "endDate": "2026-12-28",
+      "date": null,
       "time": "Weekend mornings & afternoons",
       "location": "Eastern Market, Capitol Hill, Washington, DC",
       "category": "Markets",
@@ -173,13 +155,13 @@
       "sourceName": "Eastern Market",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 17
+      "priority": 17,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-hirshhorn",
       "title": "Hirshhorn Museum & Sculpture Garden",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See museum hours",
       "location": "Hirshhorn Museum, Washington, DC",
       "category": "Arts & culture",
@@ -192,13 +174,13 @@
       "sourceName": "Hirshhorn",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 16
+      "priority": 16,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-portrait",
       "title": "National Portrait Gallery & American Art Museum",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See museum hours",
       "location": "8th & F Streets NW, Washington, DC",
       "category": "Arts & culture",
@@ -211,13 +193,13 @@
       "sourceName": "Smithsonian",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 16
+      "priority": 16,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-airspace",
       "title": "National Air and Space Museum",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "See museum hours",
       "location": "National Air and Space Museum, Washington, DC",
       "category": "Arts & culture",
@@ -230,13 +212,13 @@
       "sourceName": "Smithsonian",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 16
+      "priority": 16,
+      "eventType": "evergreen"
     },
     {
       "id": "anuva-free-rockcreek",
       "title": "Rock Creek Park – Trails & Nature",
-      "date": "2026-11-09",
-      "endDate": "2026-12-31",
+      "date": null,
       "time": "Anytime",
       "location": "Rock Creek Park, Washington, DC",
       "category": "Outdoors",
@@ -249,7 +231,8 @@
       "sourceName": "National Park Service",
       "sourceProvider": "Manual curation",
       "isFree": true,
-      "priority": 15
+      "priority": 15,
+      "eventType": "evergreen"
     }
   ]
 }
