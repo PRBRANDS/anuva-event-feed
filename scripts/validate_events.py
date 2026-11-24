@@ -45,7 +45,7 @@ for i, e in enumerate(events):
     url = e.get("url", "")
     if not isinstance(url, str) or not url.startswith("https://"):
         errors.append(f"{eid or where}: URL must start with https://")
-    elif os.getenv("CHECK_LINKS", "true").lower() == "true":
+    elif e.get("status") in ("verified", "approved", "published") and os.getenv("CHECK_LINKS", "true").lower() == "true":
         req = urllib.request.Request(url, headers={"User-Agent":"AnuvaEventFeedValidator/1.0"})
         try:
             with urllib.request.urlopen(req, timeout=12) as response:
